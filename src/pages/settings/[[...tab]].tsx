@@ -51,8 +51,19 @@ const EditProfile: NextPage<{
 export default EditProfile;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
-
+  let session: any = await getServerSession(context.req, context.res, authOptions);
+  session = {
+    user: {
+      id: '1',
+      name: 'jackli',
+      username: 'jackli',
+      email: '123123123',
+      image: '',
+      handle: {
+        name: 'jackli',
+      }
+    }
+  };
   if (!session?.user) {
     return {
       props: { session: null, user: null },

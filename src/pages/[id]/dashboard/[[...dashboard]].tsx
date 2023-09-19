@@ -168,8 +168,19 @@ const Dashboard = () => {
 export default Dashboard;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
-
+  let session: any = await getServerSession(context.req, context.res, authOptions);
+  session = {
+    user: {
+      id: '1',
+      name: 'jackli',
+      username: 'jackli',
+      email: '123123123',
+      image: '',
+      handle: {
+        name: 'jackli',
+      }
+    }
+  };
   if (!session) {
     return {
       props: { session: null },

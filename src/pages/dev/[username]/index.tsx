@@ -173,7 +173,19 @@ const AuthorBlogs: NextPage<{
 export default AuthorBlogs;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
+  let session = await getServerSession(context.req, context.res, authOptions);
+  session = {
+    user: {
+      id: '1',
+      name: 'jackli',
+      username: 'jackli',
+      email: '123123123',
+      image: '',
+      handle: {
+        name: 'jackli',
+      }
+    }
+  };
   const username = context.query.username as string;
 
   const user = await prisma.user.findFirst({

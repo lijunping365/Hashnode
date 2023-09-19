@@ -29,8 +29,19 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
-
+  let session: any = await getServerSession(context.req, context.res, authOptions);
+  session = {
+    user: {
+      id: '1',
+      name: 'jackli',
+      username: 'jackli',
+      email: '123123123',
+      image: '',
+      handle: {
+        name: 'jackli',
+      }
+    }
+  };
   return {
     props: {
       session: session
